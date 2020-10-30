@@ -478,7 +478,7 @@ input.input100 {
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background: #37b85a;
+  background: #277f3f;
 
   font-family: Montserrat-Bold;
   font-size: 12px;
@@ -632,6 +632,6 @@ input.input100 {
 }
 
 #g-logo{
-  height: 50px;
+  height: 35px;
   padding-right: 10px;
 }
