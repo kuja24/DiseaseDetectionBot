@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session')
 
 require('./passport-setup')
 const app = express();
+
 app.use(cookieSession({
     name: 'tuto-session',
     keys: ['key1', 'key2']
@@ -30,9 +31,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res)=>{
     res.render("pages/index")
 })
-app.get('/failed', (req, res) => res.send('You Failed to log in!'))
+app.get('/failed', (req, res) => res.send('Log In Failed!'))
 // In this route you can see that if the user is logged in u can acess his info in: req.user
-app.get('/good', isLoggedIn, (req, res) =>{
+app.get('/success', isLoggedIn, (req, res) =>{
     res.render("pages/profile",{name:req.user.displayName,pic:req.user.photos[0].value,email:req.user.emails[0].value})
 })
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -40,7 +41,7 @@ app.get('/google', passport.authenticate('google', { scope: ['profile', 'email']
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/good');
+    res.redirect('/success');
   }
 );
 
